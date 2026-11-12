@@ -1,0 +1,244 @@
+:root {
+  color-scheme: dark;
+  --bg: rgba(8, 15, 25, 0.9);
+  --panel: rgba(10, 18, 30, 0.96);
+  --border: rgba(148, 163, 184, 0.16);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #10b981;
+  --accent-strong: #059669;
+  --warning: #f59e0b;
+  --idle: #64748b;
+  --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: transparent;
+}
+
+body {
+  padding: 12px;
+}
+
+.popover-shell {
+  width: 100%;
+}
+
+.popover-card {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.98), var(--panel));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.popover-header,
+.status-row,
+.toggle-row,
+.controls-block,
+.settings-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 6px 0 0;
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.icon-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  cursor: pointer;
+}
+
+.icon-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--muted);
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
+}
+
+.status-block,
+.settings-panel {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.56);
+}
+
+.status-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.status-label {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.status-detail,
+.settings-note,
+.toggle-help {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.status-pill {
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.status-pill.idle {
+  color: #e2e8f0;
+  background: rgba(100, 116, 139, 0.18);
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+.status-pill.recording {
+  color: #d1fae5;
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.status-pill.paused {
+  color: #fef3c7;
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.meta-item {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(8, 15, 25, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.meta-item strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.controls-block {
+  margin-top: 16px;
+}
+
+.button {
+  flex: 1;
+  min-height: 42px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+
+.button-primary {
+  color: #03211b;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.button-secondary {
+  color: var(--text);
+  background: rgba(15, 23, 42, 0.8);
+  border-color: var(--border);
+}
+
+.settings-header {
+  margin-bottom: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.field span,
+.toggle-title {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field input {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(8, 15, 25, 0.84);
+  color: var(--text);
+  font: inherit;
+}
+
+.toggle-row {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(8, 15, 25, 0.48);
+}
+
+.toggle-row input {
+  width: 18px;
+  height: 18px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>workflow-capture-ai recorder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="popover">
+        <div id="onboardingView" class="overlay-view hidden">
+          <div class="overlay-panel">
+            <div class="eyebrow">Permissions</div>
+            <h2>Allow access to continue.</h2>
+            <p class="overlay-copy">Enable Accessibility and Screen Recording for this managed recorder.</p>
+            <div class="overlay-actions">
+              <button id="onboardingSettingsButton" class="button button-secondary" type="button">Review settings</button>
+              <button id="onboardingContinueButton" class="button button-primary" type="button">Continue</button>
+            </div>
+          </div>
+        </div>
+
+        <header class="popover-header">
+          <div>
+            <div class="brand-mark">Workflow Capture AI</div>
+            <div id="managedLabel" class="managed-label">Managed by your organization</div>
+          </div>
+          <button id="settingsButton" class="icon-button" type="button" aria-label="Open settings">
+            <span class="settings-icon"></span>
+          </button>
+        </header>
+
+        <section class="hero-card">
+          <div class="status-orb-wrap">
+            <span id="statusOrb" class="status-orb idle"></span>
+            <div>
+              <div class="micro-label">Status</div>
+              <div id="statusLabel" class="hero-value">Idle</div>
+            </div>
+          </div>
+          <button id="quickStopButton" class="mini-control" type="button" aria-label="Stop recording">
+            <span class="stop-glyph"></span>
+          </button>
+        </section>
+
+        <section class="sync-card">
+          <div class="sync-copy">
+            <span class="cloud-icon"></span>
+            <div>
+              <div class="micro-label">Last sync</div>
+              <div id="lastSyncValue" class="sync-value">Not yet synced</div>
+            </div>
+          </div>
+          <span id="syncDot" class="sync-dot idle"></span>
+        </section>
+
+        <section class="control-grid">
+          <button id="startButton" class="control-tile" type="button">
+            <span class="tile-icon play"></span>
+            <span id="startLabel">Start</span>
+          </button>
+          <button id="pauseButton" class="control-tile" type="button">
+            <span class="tile-icon pause"></span>
+            <span>Pause</span>
+          </button>
+          <button id="stopButton" class="control-tile" type="button">
+            <span class="tile-icon stop"></span>
+            <span>Stop</span>
+          </button>
+        </section>
+
+        <button id="settingsRowButton" class="settings-row" type="button">
+          <span class="settings-row-icon"></span>
+          <span>Settings</span>
+          <span class="settings-row-chevron"></span>
+        </button>
+      </section>
+
+      <div id="settingsSheet" class="sheet hidden">
+        <div class="sheet-backdrop"></div>
+        <section class="sheet-panel">
+          <header class="sheet-header">
+            <div>
+              <div class="eyebrow">Local settings</div>
+              <h3>Recorder preferences</h3>
+            </div>
+            <button id="closeSettingsButton" class="icon-button" type="button" aria-label="Close settings">
+              <span class="close-icon"></span>
+            </button>
+          </header>
+
+          <div class="settings-content">
+            <div class="field">
+              <label for="organizationName">Organization</label>
+              <input id="organizationName" type="text" />
+            </div>
+            <div class="field">
+              <label for="apiBaseUrl">API base URL</label>
+              <input id="apiBaseUrl" type="text" />
+            </div>
+            <label class="toggle-card" for="captureScreenshots">
+              <div>
+                <div class="toggle-title">Capture screenshots</div>
+                <div class="toggle-caption">Keep replay evidence available to the console.</div>
+              </div>
+              <input id="captureScreenshots" type="checkbox" />
+            </label>
+            <div class="field">
+              <label for="screenshotIntervalSeconds">Screenshot interval</label>
+              <input id="screenshotIntervalSeconds" type="number" min="1" max="300" />
+            </div>
+            <label class="toggle-card" for="debugMode">
+              <div>
+                <div class="toggle-title">Debug mode</div>
+                <div class="toggle-caption">Allows hidden diagnostics on this device.</div>
+              </div>
+              <input id="debugMode" type="checkbox" />
+            </label>
+          </div>
+
+          <footer class="sheet-footer">
+            <button id="openDiagnosticsButton" class="button button-secondary" type="button">Diagnostics</button>
+            <button id="saveSettingsButton" class="button button-primary" type="button">Save</button>
+          </footer>
+        </section>
+      </div>
+
+      <div id="diagnosticsSheet" class="sheet hidden">
+        <div class="sheet-backdrop"></div>
+        <section class="sheet-panel diagnostics-panel">
+          <header class="sheet-header">
+            <div>
+              <div class="eyebrow">Diagnostics</div>
+              <h3>Support view</h3>
+            </div>
+            <button id="closeDiagnosticsButton" class="icon-button" type="button" aria-label="Close diagnostics">
+              <span class="close-icon"></span>
+            </button>
+          </header>
+
+          <div class="diagnostics-grid">
+            <div class="diag-card">
+              <span>Session</span>
+              <strong id="diagSession">No active session</strong>
+            </div>
+            <div class="diag-card">
+              <span>Pending uploads</span>
+              <strong id="diagPending">0</strong>
+            </div>
+            <div class="diag-card">
+              <span>Current app</span>
+              <strong id="diagApp">Unavailable</strong>
+            </div>
+            <div class="diag-card">
+              <span>Current window</span>
+              <strong id="diagWindow">Unavailable</strong>
+            </div>
+            <div class="diag-card diag-wide">
+              <span>Last error</span>
+              <strong id="diagError">None</strong>
+            </div>
+            <div class="diag-card diag-wide">
+              <span>Recent activity</span>
+              <div id="diagActivity" class="diag-activity"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

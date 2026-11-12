@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>workflow-capture-ai recorder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="popover-shell">
+      <section class="popover-card">
+        <header class="popover-header">
+          <div>
+            <div class="eyebrow">Workflow Capture AI</div>
+            <h1>Recorder Agent</h1>
+          </div>
+          <button id="settingsToggle" class="icon-button" type="button" aria-label="Toggle settings">
+            <span class="icon-dot"></span>
+          </button>
+        </header>
+
+        <section class="status-block">
+          <div class="status-row">
+            <div class="status-copy">
+              <div id="statusLabel" class="status-label">Idle</div>
+              <div id="statusDetail" class="status-detail">Waiting for capture</div>
+            </div>
+            <div id="statusPill" class="status-pill idle">Idle</div>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-item">
+              <span>Session</span>
+              <strong id="sessionValue">No session</strong>
+            </div>
+            <div class="meta-item">
+              <span>API</span>
+              <strong id="apiValue">Connected</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="controls-block">
+          <button id="startButton" class="button button-primary" type="button">Start</button>
+          <button id="pauseButton" class="button button-secondary" type="button">Pause</button>
+          <button id="stopButton" class="button button-secondary" type="button">Stop</button>
+        </section>
+
+        <section id="settingsPanel" class="settings-panel hidden">
+          <div class="settings-header">
+            <div class="eyebrow">Settings</div>
+            <div class="settings-note">Minimal local controls for the background agent.</div>
+          </div>
+
+          <label class="field">
+            <span>API base URL</span>
+            <input id="apiBaseUrl" placeholder="http://127.0.0.1:8000" />
+          </label>
+
+          <label class="toggle-row" for="captureScreenshots">
+            <div>
+              <div class="toggle-title">Capture screenshots</div>
+              <div class="toggle-help">Keep visual evidence every few seconds.</div>
+            </div>
+            <input id="captureScreenshots" type="checkbox" />
+          </label>
+
+          <label class="field">
+            <span>Screenshot interval</span>
+            <input id="screenshotIntervalSeconds" type="number" min="1" max="300" />
+          </label>
+
+          <div class="settings-actions">
+            <button id="saveConfigButton" class="button button-secondary" type="button">Save settings</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+  </html>
